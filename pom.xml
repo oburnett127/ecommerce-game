@@ -8,11 +8,11 @@
         <version>2.6.7</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.oburnett127</groupId>
-    <artifactId>jobsearch</artifactId>
+    <groupId>com.example</groupId>
+    <artifactId>ecommerce</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>jobsearch</name>
-    <description>jobsearch</description>
+    <name>ecommerce</name>
+    <description>ecommerce</description>
     <properties>
         <java.version>17</java.version>
     </properties>

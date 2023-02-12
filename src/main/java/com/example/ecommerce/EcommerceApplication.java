@@ -1,4 +1,4 @@
-package com.oburnett127.jobsearch;
+package com.example.ecommerce;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableJpaRepositories
-public class JobsearchApplication {
+public class EcommerceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(JobsearchApplication.class, args);
+        SpringApplication.run(EcommerceApplication.class, args);
     }
 
 }
