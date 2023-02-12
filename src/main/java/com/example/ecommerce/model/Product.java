@@ -24,10 +24,10 @@ public class Product {
         private BigDecimal unitPrice;
         @Column(name = "units_in_stock")
         private int unitsInStock;
-        //@ManyToOne
-        //@JoinColumn(name="account_id", nullable=true)
-        //private Cart cart;
-        //@ManyToOne
-        //@JoinColumn(name = "account_id")
-        //private Purchase purchase;
+        @ManyToOne
+        @JoinColumn(name="account_id", nullable=true)
+        private Cart cart;
+        @ManyToOne
+        @JoinColumn(name="purchase_id")
+        private Purchase purchase;
 }

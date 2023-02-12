@@ -18,8 +18,8 @@ import java.util.Set;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Cart {
         @Id
+        @Column(name="account_id")
         private int accountId;
-        //@OneToMany(mappedBy="cart")
-        //private Set<Product> products;
-
+        @OneToMany(mappedBy="cart")
+        private Set<Product> products;
 }

@@ -18,12 +18,13 @@ import java.util.Set;
 public class Purchase {
         @Id
         @GeneratedValue(strategy =  GenerationType.IDENTITY)
+        @Column(name="purchase_id")
         private int purchaseId;
         private int accountId;
         @Column(name = "purchase_date")
         private String purchaseDate;
-        //@OneToMany(mappedBy="purchase")
-        //private Set<Product> product;
+        @OneToMany(mappedBy="purchase")
+        private Set<Product> product;
         @Column(name = "bill_first_name")
         private String billFirstName;
         @Column(name = "bill_last_name")
