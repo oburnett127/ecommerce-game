@@ -6,7 +6,6 @@ import com.example.ecommerce.repository.ProductRepository;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -24,8 +23,7 @@ public class ProductService {
 
     @SneakyThrows
     public Product getProduct(final int id) {
-        final var product = this.productRepository.getById(id);
-        return product;
+        return this.productRepository.getById(id);
     }
 
     public void createProduct(Product product) {
@@ -33,10 +31,10 @@ public class ProductService {
     }
 
     @SneakyThrows
-    public Product editProduct(int id, String name, String description, BigDecimal unitPrice, int unitsInStock) {
-
+    public Product editProduct(int id, String name, int marketPrice) {
+        //=============
         //To do: Make sure the user is an admin
-
+        //=============
         String message = "";
 
         if(name.isBlank() || name == null || !name.matches("^[a-zA-Z0-9]*$")) {
@@ -44,27 +42,15 @@ public class ProductService {
             throw new InvalidEditException(message);
         }
 
-        if(description.isBlank() || description == null) {
-            message = "Product description cannot be blank and must be alphanumeric.";
-            throw new InvalidEditException(message);
-        }
-
-        if(unitPrice.compareTo(new BigDecimal(0.0)) < 0) {
-            message = "Price must be a non-negative, decimal number.";
-            throw new InvalidEditException(message);
-        }
-
-        if(unitsInStock < 0) {
-            message = "Units in stock must be greater than or equal to zero.";
+        if(marketPrice < 0) {
+            message = "Price must be a non-negative, integer.";
             throw new InvalidEditException(message);
         }
 
         final var product = this.productRepository.getById(id);
 
         product.setName(name);
-        product.setDescription(description);
-        product.setUnitPrice(unitPrice);
-        product.setUnitsInStock(unitsInStock);
+        product.setMarketPrice(marketPrice);
         this.productRepository.save(product);
         return product;
     }

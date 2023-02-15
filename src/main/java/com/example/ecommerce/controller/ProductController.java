@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.List;
 
 @CrossOrigin
@@ -37,9 +36,7 @@ public class ProductController {
     public ResponseEntity<Product> createProduct(@Validated @RequestBody ProductCreateRequest createProductRequest) throws IOException {
         final var product = Product.builder()
                 .name(createProductRequest.getName())
-                .description(createProductRequest.getDescription())
-                .unitPrice(createProductRequest.getUnitPrice())
-                .unitsInStock(createProductRequest.getUnitsInStock())
+                .marketPrice(createProductRequest.getMarketPrice())
                 .build();
         service.createProduct(product);
         return ResponseEntity.ok(product);
@@ -49,10 +46,8 @@ public class ProductController {
     public ResponseEntity<Product> editProduct(@Validated @RequestBody ProductEditRequest editRequest) throws IOException {
         final var id = editRequest.getId();
         final var name = editRequest.getName();
-        final var description = editRequest.getDescription();
-        final var unitPrice = editRequest.getUnitPrice();
-        final var unitsInStock = editRequest.getUnitsInStock();
-        final var result = service.editProduct(id, name, description, unitPrice, unitsInStock);
+        final var marketPrice = editRequest.getMarketPrice();
+        final var result = service.editProduct(id, name, marketPrice);
         return ResponseEntity.ok().body(result);
     }
 
