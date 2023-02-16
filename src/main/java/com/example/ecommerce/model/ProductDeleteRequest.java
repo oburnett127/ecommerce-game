@@ -4,5 +4,6 @@ import lombok.Data;
 
 @Data
 public class ProductDeleteRequest {
-    private int id;
+    private int accountId;
+    private int productId;
 }

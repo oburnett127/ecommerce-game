@@ -1,7 +1,9 @@
 package com.example.ecommerce.service;
 
 import com.example.ecommerce.exception.InvalidEditException;
+import com.example.ecommerce.exception.InvalidPermissionException;
 import com.example.ecommerce.model.Product;
+import com.example.ecommerce.repository.AccountRepository;
 import com.example.ecommerce.repository.ProductRepository;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -12,9 +14,11 @@ import java.util.List;
 @Slf4j
 public class ProductService {
     private final ProductRepository productRepository;
+    private final AccountRepository accountRepository;
 
-    public ProductService(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository, AccountRepository accountRepository) {
         this.productRepository = productRepository;
+        this.accountRepository = accountRepository;
     }
 
     public List<Product> listAll() {
@@ -26,16 +30,21 @@ public class ProductService {
         return this.productRepository.getById(id);
     }
 
-    public void createProduct(Product product) {
+    public void createProduct(int accountId, Product product) {
+        String message = "";
+        final var account = accountRepository.getById(accountId);
+
+        if(account.getIsAdmin() == false) throw new InvalidPermissionException();
+
         this.productRepository.save(product);
     }
 
     @SneakyThrows
-    public Product editProduct(int id, String name, int marketPrice) {
-        //=============
-        //To do: Make sure the user is an admin
-        //=============
+    public Product editProduct(int accountId, int productId, String name, int marketPrice) {
         String message = "";
+        final var account = accountRepository.getById(accountId);
+
+        if(account.getIsAdmin() == false) throw new InvalidPermissionException();
 
         if(name.isBlank() || name == null || !name.matches("^[a-zA-Z0-9]*$")) {
             message = "Product name cannot be blank and must be alphanumeric.";
@@ -47,7 +56,7 @@ public class ProductService {
             throw new InvalidEditException(message);
         }
 
-        final var product = this.productRepository.getById(id);
+        final var product = this.productRepository.getById(productId);
 
         product.setName(name);
         product.setMarketPrice(marketPrice);
@@ -55,5 +64,12 @@ public class ProductService {
         return product;
     }
 
-    public void deleteProduct(int id) { this.productRepository.deleteById(id); }
+    public void deleteProduct(int accountId, int productId) {
+        String message = "";
+        final var account = accountRepository.getById(accountId);
+
+        if(account.getIsAdmin() == false) throw new InvalidPermissionException();
+
+        this.productRepository.deleteById(productId);
+    }
 }

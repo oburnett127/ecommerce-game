@@ -33,28 +33,31 @@ public class ProductController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Product> createProduct(@Validated @RequestBody ProductCreateRequest createProductRequest) throws IOException {
+    public ResponseEntity<Product> createProduct(@Validated @RequestBody ProductCreateRequest createRequest) throws IOException {
+        final var accountId = createRequest.getAccountId();
         final var product = Product.builder()
-                .name(createProductRequest.getName())
-                .marketPrice(createProductRequest.getMarketPrice())
+                .name(createRequest.getName())
+                .marketPrice(createRequest.getMarketPrice())
                 .build();
-        service.createProduct(product);
+        service.createProduct(accountId, product);
         return ResponseEntity.ok(product);
     }
 
     @PostMapping("/edit")
     public ResponseEntity<Product> editProduct(@Validated @RequestBody ProductEditRequest editRequest) throws IOException {
-        final var id = editRequest.getId();
+        final var accountId = editRequest.getAccountId();
+        final var productId = editRequest.getProductId();
         final var name = editRequest.getName();
         final var marketPrice = editRequest.getMarketPrice();
-        final var result = service.editProduct(id, name, marketPrice);
+        final var result = service.editProduct(accountId, productId, name, marketPrice);
         return ResponseEntity.ok().body(result);
     }
 
     @PostMapping("/delete")
     public ResponseEntity<Product> deleteProduct(@Validated @RequestBody ProductDeleteRequest deleteRequest) throws IOException {
-        final var id = deleteRequest.getId();
-        service.deleteProduct(id);
+        final var accountId = deleteRequest.getAccountId();
+        final var productId = deleteRequest.getProductId();
+        service.deleteProduct(accountId, productId);
         return ResponseEntity.ok().body(null);
     }
 }
