@@ -15,12 +15,12 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/purchase")
 @Slf4j
-public class ProductController {
+public class PurchaseController {
     private final ProductService service;
 
-    public ProductController(ProductService service) {
+    public PurchaseController(ProductService service) {
         this.service = service;
     }
 
