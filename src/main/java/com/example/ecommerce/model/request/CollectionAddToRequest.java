@@ -3,6 +3,7 @@ package com.example.ecommerce.model.request;
 import lombok.Data;
 
 @Data
-public class CollectionGetRequest {
+public class CollectionAddToRequest {
     private int accountId;
+    private int productId;
 }

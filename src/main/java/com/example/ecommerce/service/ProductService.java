@@ -33,9 +33,7 @@ public class ProductService {
     public void createProduct(int accountId, Product product) {
         String message = "";
         final var account = accountRepository.getById(accountId);
-
         if(account.getIsAdmin() == false) throw new InvalidPermissionException();
-
         this.productRepository.save(product);
     }
 
@@ -43,7 +41,6 @@ public class ProductService {
     public Product editProduct(int accountId, int productId, String name, int marketPrice) {
         String message = "";
         final var account = accountRepository.getById(accountId);
-
         if(account.getIsAdmin() == false) throw new InvalidPermissionException();
 
         if(name.isBlank() || name == null || !name.matches("^[a-zA-Z0-9]*$")) {
@@ -57,7 +54,6 @@ public class ProductService {
         }
 
         final var product = this.productRepository.getById(productId);
-
         product.setName(name);
         product.setMarketPrice(marketPrice);
         this.productRepository.save(product);
@@ -67,9 +63,7 @@ public class ProductService {
     public void deleteProduct(int accountId, int productId) {
         String message = "";
         final var account = accountRepository.getById(accountId);
-
         if(account.getIsAdmin() == false) throw new InvalidPermissionException();
-
         this.productRepository.deleteById(productId);
     }
 }

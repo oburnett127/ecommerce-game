@@ -1,11 +1,11 @@
 package com.example.ecommerce.controller;
 
 import com.example.ecommerce.model.*;
-import com.example.ecommerce.model.request.ProductCreateRequest;
-import com.example.ecommerce.model.request.ProductDeleteRequest;
-import com.example.ecommerce.model.request.ProductEditRequest;
-import com.example.ecommerce.model.request.ProductGetRequest;
-import com.example.ecommerce.service.ProductService;
+import com.example.ecommerce.model.request.PurchaseCreateRequest;
+import com.example.ecommerce.model.request.PurchaseDeleteRequest;
+import com.example.ecommerce.model.request.PurchaseEditRequest;
+import com.example.ecommerce.model.request.PurchaseGetRequest;
+import com.example.ecommerce.service.PurchaseService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -18,50 +18,50 @@ import java.util.List;
 @RequestMapping("/purchase")
 @Slf4j
 public class PurchaseController {
-    private final ProductService service;
+    private final PurchaseService service;
 
-    public PurchaseController(ProductService service) {
+    public PurchaseController(PurchaseService service) {
         this.service = service;
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<Product>> view() {
+    public ResponseEntity<List<Purchase>> view() {
         final var result = service.listAll();
         return ResponseEntity.ok().body(result);
     }
 
     @GetMapping("/get")
-    public ResponseEntity<Product> getProduct(@Validated @RequestBody ProductGetRequest productRequest) {
-        final var product = service.getProduct(productRequest.getId());
-        return ResponseEntity.ok().body(product);
+    public ResponseEntity<Purchase> getPurchase(@Validated @RequestBody PurchaseGetRequest purchaseRequest) {
+        final var purchase = service.getPurchase(purchaseRequest.getId());
+        return ResponseEntity.ok().body(purchase);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Product> createProduct(@Validated @RequestBody ProductCreateRequest createRequest) throws IOException {
+    public ResponseEntity<Purchase> createPurchase(@Validated @RequestBody PurchaseCreateRequest createRequest) throws IOException {
         final var accountId = createRequest.getAccountId();
-        final var product = Product.builder()
+        final var purchase = Purchase.builder()
                 .name(createRequest.getName())
                 .marketPrice(createRequest.getMarketPrice())
                 .build();
-        service.createProduct(accountId, product);
-        return ResponseEntity.ok(product);
+        service.createPurchase(accountId, purchase);
+        return ResponseEntity.ok(purchase);
     }
 
     @PostMapping("/edit")
-    public ResponseEntity<Product> editProduct(@Validated @RequestBody ProductEditRequest editRequest) throws IOException {
+    public ResponseEntity<Purchase> editPurchase(@Validated @RequestBody PurchaseEditRequest editRequest) throws IOException {
         final var accountId = editRequest.getAccountId();
-        final var productId = editRequest.getProductId();
+        final var purchaseId = editRequest.getPurchaseId();
         final var name = editRequest.getName();
         final var marketPrice = editRequest.getMarketPrice();
-        final var result = service.editProduct(accountId, productId, name, marketPrice);
+        final var result = service.editPurchase(accountId, purchaseId, name, marketPrice);
         return ResponseEntity.ok().body(result);
     }
 
     @PostMapping("/delete")
-    public ResponseEntity<Product> deleteProduct(@Validated @RequestBody ProductDeleteRequest deleteRequest) throws IOException {
+    public ResponseEntity<Purchase> deletePurchase(@Validated @RequestBody PurchaseDeleteRequest deleteRequest) throws IOException {
         final var accountId = deleteRequest.getAccountId();
-        final var productId = deleteRequest.getProductId();
-        service.deleteProduct(accountId, productId);
+        final var purchaseId = deleteRequest.getPurchaseId();
+        service.deletePurchase(accountId, purchaseId);
         return ResponseEntity.ok().body(null);
     }
 }
