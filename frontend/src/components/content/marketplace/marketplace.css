@@ -1,0 +1,21 @@
+.market {
+    overflow: auto;
+    display: grid; 
+    padding: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 2fr));
+    /* Center everything when there are 2 or more rows */
+    justify-items: center;
+    /* Center everything there is one row */
+    justify-content: center;
+    gap: 30px;
+    color: red;
+}
+
+.product {
+    border: 5px solid black;
+    box-shadow: 2px 4px 16px rgba(0,0,0,.06);
+    border-radius: 4px;
+    height: 200px;
+    width: 300px;
+    padding: 10px;
+}
