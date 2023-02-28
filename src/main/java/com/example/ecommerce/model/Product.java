@@ -3,7 +3,6 @@ package com.example.ecommerce.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import javax.persistence.*;
-import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -19,15 +18,12 @@ public class Product {
         @GeneratedValue(strategy =  GenerationType.IDENTITY)
         private int id;
         private String name;
-        private String description;
-        @Column(name = "unit_price")
-        private BigDecimal unitPrice;
-        @Column(name = "units_in_stock")
-        private int unitsInStock;
+        @Column(name = "market_price")
+        private int marketPrice;
         @ManyToOne
         @JoinColumn(name="account_id", nullable=true)
-        private Cart cart;
+        private Collection collection;
         @ManyToOne
-        @JoinColumn(name="purchase_id")
+        @JoinColumn(name="purchase_id", nullable=true)
         private Purchase purchase;
 }

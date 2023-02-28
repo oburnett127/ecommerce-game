@@ -25,18 +25,6 @@ public class Purchase {
         private String purchaseDate;
         @OneToMany(mappedBy="purchase")
         private Set<Product> product;
-        @Column(name = "bill_first_name")
-        private String billFirstName;
-        @Column(name = "bill_last_name")
-        private String billLastName;
-        @Column(name = "bill_address")
-        private String billAddress;
-        @Column(name = "credit_card_exp_date")
-        private String creditCardExpDate;
-        @Column(name = "credit_card_pin")
-        private String creditCardPin;
-        @Column(name = "credit_card_num")
-        private String creditCardNum;
-        @Column(name = "credit_card_name")
-        private String creditCardName;
+        @Column(name = "bill_user_name")
+        private String billUserName;
 }
