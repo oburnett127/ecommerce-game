@@ -3,7 +3,7 @@ package com.example.ecommerce.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,8 +16,10 @@ import java.util.Set;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Collection {
     @Id
+    @Basic(optional = false)
     @Column(name="account_id")
     private int accountId;
+
     @OneToMany(mappedBy="collection")
-    private Set<Product> products;
+    private List<Product> products;
 }

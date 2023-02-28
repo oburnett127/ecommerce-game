@@ -16,11 +16,16 @@ import javax.persistence.*;
 public class Account {
         @Id
         @GeneratedValue(strategy =  GenerationType.IDENTITY)
+        @Basic(optional = false)
         private int id;
+        @Basic(optional = false)
         private String email;
+        @Basic(optional = false)
         @Column(name = "user_name")
         private String userName;
+        @Basic(optional = false)
         private String password;
+        @Basic(optional = false)
         @Column(name = "is_admin")
         private boolean isAdmin;
 }

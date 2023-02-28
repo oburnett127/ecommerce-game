@@ -16,14 +16,15 @@ import javax.persistence.*;
 public class Product {
         @Id
         @GeneratedValue(strategy =  GenerationType.IDENTITY)
+        @Basic(optional = false)
         private int id;
+        @Basic(optional = false)
         private String name;
+        @Basic(optional = false)
         @Column(name = "market_price")
         private int marketPrice;
-        @ManyToOne
-        @JoinColumn(name="account_id", nullable=true)
+        @ManyToOne(optional = true)
         private Collection collection;
-        @ManyToOne
-        @JoinColumn(name="purchase_id", nullable=true)
+        @ManyToOne(optional = true)
         private Purchase purchase;
 }

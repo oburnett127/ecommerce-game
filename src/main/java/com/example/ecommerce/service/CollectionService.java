@@ -9,6 +9,8 @@ import com.example.ecommerce.repository.ProductRepository;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -32,7 +34,7 @@ public class CollectionService {
         final var collection = collectionRepository.getById(accountId);
         final var product = this.productRepository.getById(productId);
 
-        Set<Product> productList = collection.getProducts();
+        List<Product> productList = collection.getProducts();
         productList.add(product);
         collection.setProducts(productList);
 
@@ -48,7 +50,7 @@ public class CollectionService {
         final var collection = collectionRepository.getById(accountId);
         final var product = this.productRepository.getById(productId);
 
-        Set<Product> productList = collection.getProducts();
+        List<Product> productList = collection.getProducts();
         productList.remove(product);
         collection.setProducts(productList);
 

@@ -19,13 +19,18 @@ import java.util.Set;
 public class Purchase {
         @Id
         @GeneratedValue(strategy =  GenerationType.IDENTITY)
+        @Basic(optional = false)
         @Column(name="purchase_id")
         private int purchaseId;
+        @Basic(optional = false)
         private int accountId;
+        @Basic(optional = false)
         @Column(name = "purchase_date")
         private String purchaseDate;
-        @OneToMany(mappedBy="purchase")
-        private List<Product> products;
+        @Basic(optional = false)
         @Column(name = "bill_user_name")
         private String billUserName;
+        @OneToMany(mappedBy="purchase")
+        private List<Product> products;
+
 }
