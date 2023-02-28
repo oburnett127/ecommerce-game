@@ -37,11 +37,11 @@ public class ProductController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Product> createProduct(@Validated @RequestBody ProductCreateRequest createRequest) throws IOException {
-        final var accountId = createRequest.getAccountId();
+    public ResponseEntity<Product> createProduct(@Validated @RequestBody ProductCreateRequest createProductRequest) throws IOException {
+        final var accountId = createProductRequest.getAccountId();
         final var product = Product.builder()
-                .name(createRequest.getName())
-                .marketPrice(createRequest.getMarketPrice())
+                .name(createProductRequest.getName())
+                .marketPrice(createProductRequest.getMarketPrice())
                 .build();
         service.createProduct(accountId, product);
         return ResponseEntity.ok(product);

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -24,7 +25,7 @@ public class Purchase {
         @Column(name = "purchase_date")
         private String purchaseDate;
         @OneToMany(mappedBy="purchase")
-        private Set<Product> product;
+        private List<Product> products;
         @Column(name = "bill_user_name")
         private String billUserName;
 }
