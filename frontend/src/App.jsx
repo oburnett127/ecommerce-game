@@ -14,15 +14,13 @@ import {
 function App() {
   return (
     <div className="App">
-      <BrowserRouter> 
-        <body>
+      <BrowserRouter>
           <Header />
           <Routes>
             <Route exact path='/' element={<GetStarted/>} />
             <Route exact path='/marketplace' element={<Marketplace/>} />
             <Route exact path='/construction' element={<Construction/>} />
           </Routes>
-        </body>
       </BrowserRouter>
     </div>
   );

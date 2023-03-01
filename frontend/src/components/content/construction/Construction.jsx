@@ -3,7 +3,7 @@ import "./construction.css";
 
 const Construction = () => {
   return (
-    <div class = "construction">
+    <div className = "construction">
         <img 
         src={require('./../../../assets/construction.jpg')} 
         alt = "placeholder"

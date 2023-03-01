@@ -4,16 +4,16 @@ import { NavLink } from 'react-router-dom';
 
 const GetStarted = () => {
   return (
-    <div class = "getStartedContent">
-        <div class = "getStarted">
+    <div className = "getStartedContent">
+        <div className = "getStarted">
             Welcome To <br />
             Marketplace <br />
             Game!
-            <button class = "startButton">
+            <button className = "startButton">
                 <NavLink style={{color: 'white', textDecoration: 'none'}}  to='/marketplace'>Get Started</NavLink>
             </button>
         </div>
-        <div class = "animation">
+        <div className = "animation">
             <img 
             src={require('./../../../assets/placeholder.jpg')} 
             alt = "placeholder"

@@ -26,6 +26,7 @@ public class ProductController {
 
     @GetMapping("/list")
     public ResponseEntity<List<Product>> view() {
+        System.out.println("inside Product.view method $$$$$$$$$$$$$$$$$$$ ***********");
         final var result = service.listAll();
         return ResponseEntity.ok().body(result);
     }

@@ -4,11 +4,11 @@ import './header.css';
 
 const Header = () => {
   return (
-    <div class = "header">
-      <div class = "title">
+    <div className = "header">
+      <div className = "title">
       <NavLink style={{color: 'white', textDecoration: 'none'}}  to='/'>Marketplace Website (M)</NavLink>
       </div>
-      <div class = "elements">
+      <div className = "elements">
         <NavLink style={{color: 'white', textDecoration: 'none'}}  to='/marketplace'>Marketplace</NavLink>
         <NavLink style={{color: 'white', textDecoration: 'none'}}  to='/construction'>Collection</NavLink>
         <NavLink style={{color: 'white', textDecoration: 'none'}}  to='/construction'>About Us</NavLink>
